@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="./index.css">
+  <title>Pokemon Game</title>
+</head>
+<body>
+  <!-- <button onclick="start()" id="sb">
+    PRESS ME TO START!!!
+  </button> -->
+  <img id="sb" src="./Start.png" onclick="start()">
+  <audio id="audio" src="bgm.mp3" autoplay loop></audio>
+  <h1 id="winscreen" style="display: none">
+    CONGRATULATIONS! YOU WON!
+  </h1>
+  <h1 id="losescreen" style="display: none">
+    bruh, you lost? Git Gud...
+  </h1>
+  <div class="main" id="main">
+    <div class="move-area">
+    <h2 class="title">MOVES</h2>
+      <div class="kyogre-moves moves-layout">
+        <button class="moves water" id="wf" onclick="wf(current_opp)">Waterfall</button>
+        <button class="moves water" id="hp" onclick="hp(current_opp)">Hydro Pump</button>
+        <button class="moves water" id="sf" onclick="surf(current_opp)">Surf</button>
+        <button class="moves ice" id="bz" onclick="bliz(current_opp)">Blizzard</button>
+      </div>
+
+      <div class="snorlax-moves moves-layout" style="display: none;">
+        <button class="moves normal" id="bs" onclick="bs(current_opp)">Body Slam</button>
+        <button class="moves normal" id="ch" onclick="crunch(current_opp)">Crunch</button>
+        <button class="moves psychic" id="zh" onclick="zh(current_opp)">Zen Headbutt</button>
+        <button class="moves elec" id="tb" onclick="tb(current_opp)">Thunderbolt</button>
+      </div>
+
+      <div class="victini-moves moves-layout" style="display: none;">
+        <button class="moves fire" id="vc" onclick="vc(current_opp)">V-create</button>
+        <button class="moves psychic" id="psy" onclick="psy(current_opp)">Psychic</button>
+        <button class="moves fight" id="mp" onclick="mp(current_opp)">Mega Punch</button>
+        <button class="moves fight" id="bb" onclick="bb(current_opp)">Brick Break</button>
+      </div>
+      <div class="choose-pkmn">
+      <h2 class="title">YOUR POKEMON</h2>
+        <div class="inner-choose">
+          <button class="pkmn" id="k">
+            <img src="./kyogrefront.gif" class="pkmn-img" style="width: 65px;">
+            <br>
+            KYOGRE
+          </button>
+          <button class="pkmn" id="s">
+            <img src="./snorlax.gif" class="pkmn-img">
+            <br>
+            SNORLAX
+          </button>
+          <button class="pkmn" id="v">
+            <img src="./victini.gif" class="pkmn-img">
+            <br>
+            VICTINI
+          </button>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="screen">
+      <div class="main-screen">
+        <div class="div1 ms-div"> <!-- user's pokemon -->
+          <img src="./kyogre.gif" class="kyogre" id="kyogre">
+          <img src="./snorlaxback.gif" class="kyogre" id="snorlax" style="display: none;">
+          <img src="./victiniback.gif" class="kyogre" id="victini" style="display: none; width: 150px;">
+          <div class="userbox">
+            <div class="name">
+              <h3 class="pkname" id="pkmn-name1">Kyogre</h3>
+              <h5 class="lvl">Lv. 60</h5>
+            </div>
+            
+            <div class="progress">
+              <div id="userhealth" class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="div2 ms-div"> <!-- opponent's pokemon -->
+          <img src="./groudon.gif" class="groudon" id="groudon">
+          <img src="./miltank.gif" class="groudon" id="milktank" style="display: none; width: 200px;">
+          <img src="./ampharos.gif" class="groudon" id="ampharos" style="display: none; width: 150px;">
+          <div class="oppbox" >
+            <div class="name">
+              <h3 class="pkname" id="pkmn-name2">Groudon</h3>
+              <h5 class="lvl">Lv. 60</h5>
+            </div>
+            <div class="progress">
+              <div id="opphealth" class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="ta-ob">
+        <div class="text-area" id="text-area">
+      </div>
+        <button class="next ml-auto" id="next" onclick="next(you)">
+        >>
+      </button>
+      </div>    
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./script3.js"></script>
+</body>
+</html>
